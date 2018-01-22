@@ -36,6 +36,6 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 
 ## Clean up
 RUN apt-get remove -y software-properties-common curl \
-    && apt-get clean
+    && apt-get clean \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
