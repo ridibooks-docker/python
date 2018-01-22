@@ -17,7 +17,25 @@ RUN apt-get install -y python3.6 python3.6-dev
 RUN curl -o /tmp/get-pip.py "https://bootstrap.pypa.io/get-pip.py"
 RUN python3.6 /tmp/get-pip.py
 
+## Setting language
+RUN apt-get install -y language-pack-ko
+
+RUN locale-gen ko_KR.UTF-8
+ENV LANG ko_KR.UTF-8
+ENV LANGUAGE ko_KR.UTF-8
+ENV LC_ALL ko_KR.UTF-8
+
+## Setting timezion
+ENV TZ Asia/Seoul
+
+RUN echo $TZ > /etc/timezone && \
+    apt-get install -y tzdata && \
+    rm /etc/localtime && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
+
 ## Clean up
 RUN apt-get remove -y software-properties-common curl \
-    && apt autoremove -y \
+    && apt-get clean
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
