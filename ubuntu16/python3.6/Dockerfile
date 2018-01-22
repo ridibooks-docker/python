@@ -28,11 +28,11 @@ ENV LC_ALL ko_KR.UTF-8
 ## Setting timezion
 ENV TZ Asia/Seoul
 
-RUN echo $TZ > /etc/timezone && \
-    apt-get install -y tzdata && \
-    rm /etc/localtime && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata
+RUN echo $TZ > /etc/timezone
+RUN apt-get install -y tzdata
+RUN rm /etc/localtime
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 ## Clean up
 RUN apt-get remove -y software-properties-common curl \
