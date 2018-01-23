@@ -10,4 +10,8 @@ RUN apt autoremove -y \
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 
+# Log file initialize
+RUN mkdir /var/log/library
+RUN touch /var/log/library/www.log
+
 WORKDIR /htdocs/www
