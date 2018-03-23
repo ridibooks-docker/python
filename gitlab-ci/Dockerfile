@@ -6,8 +6,5 @@ RUN rm -rf /var/cache/apk/*
 
 RUN pip3 install --upgrade pip
 
-RUN pip3 install awscli
-RUN pip3 install ecs-deploy
-
 ADD requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
