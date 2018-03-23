@@ -10,6 +10,9 @@ RUN apt autoremove -y \
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 
+# Install uwsgi
+RUN pip3.6 install uwsgi
+
 # Log file initialize
 RUN mkdir /var/log/library
 RUN touch /var/log/library/www.log
