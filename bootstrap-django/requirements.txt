@@ -13,7 +13,7 @@ django-redis==4.9.0
 django-storages==1.6.5
 django-threadlocals==0.8
 Django==2.2.8
-djangorestframework==3.7.7
+djangorestframework==3.9.1
 dnspython==1.15.0
 docopt==0.4.0
 drf-yasg==1.9.0
