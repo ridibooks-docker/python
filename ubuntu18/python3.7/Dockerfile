@@ -8,7 +8,8 @@ RUN apt-get update \
 
 # Install python3.7
 RUN apt-get update \
-    && apt-get install -y python3.7 python3.7-dev python3-pip
+    && apt-get install -y python3.7 python3.7-dev python3-pip \
+    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
 
 # Setting timezion
 ENV TZ Asia/Seoul
