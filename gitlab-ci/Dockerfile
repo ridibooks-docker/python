@@ -1,7 +1,7 @@
-FROM docker:latest
+FROM python:3.7-alpine
 
 RUN apk update
-RUN apk add python3 make mariadb-dev python3-dev gcc musl-dev curl libffi-dev libressl libressl-dev npm
+RUN apk add make mariadb-dev gcc musl-dev curl libffi-dev libressl libressl-dev npm
 RUN rm -rf /var/cache/apk/*
 
 # install ecl-cli
