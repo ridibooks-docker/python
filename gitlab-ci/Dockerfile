@@ -2,7 +2,7 @@ FROM python:3.7-slim
 
 ARG CONTAINER_ARCHITECTURE=linux-amd64
 ARG AWS_CLI_VERSION=1.18.47
-ARG ECS_CLI_VERSION=latest
+ARG ECS_CLI_VERSION=1.17
 ARG DOCKER_COMPOSE_VERSION=1.25.2
 
 RUN apt-get update \
@@ -12,7 +12,7 @@ RUN apt-get update \
     && pip3 install --upgrade \
         awscli==${AWS_CLI_VERSION} \
         docker-compose==${DOCKER_COMPOSE_VERSION} \
-    && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-${CONTAINER_ARCHITECTURE}-v${ECS_CLI_VERSION} \
+    && curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-${CONTAINER_ARCHITECTURE}-v${ECS_CLI_VERSION} \
     && chmod +x /usr/local/bin/ecs-cli
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
