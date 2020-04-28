@@ -16,7 +16,7 @@ RUN apt-get update \
     && pip3 install --upgrade \
         awscli==${AWS_CLI_VERSION} \
         docker-compose==${DOCKER_COMPOSE_VERSION} \
-    && pip3 install -r /tmp/requirements.txt
+    && pip3 install -r /tmp/requirements.txt \
     && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-${CONTAINER_ARCHITECTURE}-v${ECS_CLI_VERSION} \
     && chmod +x /usr/local/bin/ecs-cli \
     && rm -rf /var/lib/apt/lists/*
