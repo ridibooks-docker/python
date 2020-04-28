@@ -1,16 +1,24 @@
-FROM python:3.7-alpine
+FROM python:3.7-slim
 
-RUN apk update
-RUN apk add make mariadb-dev gcc musl-dev curl libffi-dev libressl libressl-dev npm
-RUN rm -rf /var/cache/apk/*
-
-# install ecl-cli
-RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest
-RUN chmod +x /usr/local/bin/ecs-cli
-
-RUN npm install -g yarn webpack webpack-cli
-
-RUN pip3 install --upgrade pip
+ARG CONTAINER_ARCHITECTURE=linux-amd64
+ARG AWS_CLI_VERSION=1.16.158
+ARG ECS_CLI_VERSION=1.14.1
+ARG DOCKER_COMPOSE_VERSION=1.23.2
 
 ADD requirements.txt /tmp/requirements.txt
-RUN pip3 install -r /tmp/requirements.txt
+
+RUN apt-get update \
+    && apt-get install -y \
+        build-essential \
+        curl \
+        nodejs \
+        npm \
+    && pip3 install --upgrade \
+        awscli==${AWS_CLI_VERSION} \
+        docker-compose==${DOCKER_COMPOSE_VERSION} \
+    && pip3 install -r /tmp/requirements.txt
+    && curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-${CONTAINER_ARCHITECTURE}-v${ECS_CLI_VERSION} \
+    && chmod +x /usr/local/bin/ecs-cli \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g yarn webpack webpack-cli
