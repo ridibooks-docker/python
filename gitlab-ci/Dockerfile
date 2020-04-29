@@ -2,7 +2,7 @@ FROM python:3.7-slim
 
 ARG CONTAINER_ARCHITECTURE=linux-amd64
 ARG AWS_CLI_VERSION=1.18.47
-ARG ECS_CLI_VERSION=1.17
+ARG ECS_CLI_VERSION=1.17.0
 ARG DOCKER_COMPOSE_VERSION=1.25.2
 
 RUN apt-get update \
@@ -10,6 +10,7 @@ RUN apt-get update \
         build-essential \
         curl \
         docker.io \
+    && pip3 install --upgrade pip \
     && pip3 install --upgrade \
         awscli==${AWS_CLI_VERSION} \
         docker-compose==${DOCKER_COMPOSE_VERSION} \
