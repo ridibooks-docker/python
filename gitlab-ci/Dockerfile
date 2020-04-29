@@ -9,6 +9,7 @@ RUN apt-get update \
     && apt-get install -y \
         build-essential \
         curl \
+        docker.io \
     && pip3 install --upgrade \
         awscli==${AWS_CLI_VERSION} \
         docker-compose==${DOCKER_COMPOSE_VERSION} \
