@@ -10,6 +10,7 @@ RUN apt-get update \
         build-essential \
         curl \
         docker.io \
+        libmariadb-dev \
     && pip3 install --upgrade pip \
     && pip3 install --upgrade \
         awscli==${AWS_CLI_VERSION} \
